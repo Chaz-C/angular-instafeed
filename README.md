@@ -1,73 +1,89 @@
-# Angular Instafeed
-Make a personal Instagram Feed on a switchable grid with the Instagram API.
+# angular-webpack
 
-You will be creating a Instagram feed using the Instagram API and Angular 1.5. The feed will feature a switchable grid to change the layout of the photos on the page [see Style Guide below for details].
+[![Dependency Status](https://david-dm.org/preboot/angular-webpack/status.svg)](https://david-dm.org/preboot/angular-webpack#info=dependencies) [![devDependency Status](https://david-dm.org/preboot/angular-webpack/dev-status.svg)](https://david-dm.org/preboot/angular-webpack#info=devDependencies)
 
-Before you start building out your Angular web application, you will need to sign up to be an Instagram Developer:
+A complete, yet simple, starter for Angular using Webpack.
 
-  1. First go [register as an Instagram Developer](https://instagram.com/developer/clients/manage/) to get your Client ID.
+This workflow serves as a starting point for building Angular 1.x applications using Webpack 2.x. Should be noted that apart from the pre-installed angular package, this workflow is pretty much generic.
 
-  1. You will also need to get your user ID go run this program. To get your User ID, go to [this site](http://jelled.com/instagram/lookup-user-id) and enter your Instagram user name to get your user ID.
+* Heavily commented webpack configuration with reasonable defaults.
+* ES6, and ES7 support with babel.
+* Source maps included in all builds.
+* Development server with live reload.
+* Production builds with cache busting.
+* Testing environment using karma to run tests and jasmine as the framework.
+* Code coverage when tests are run.
+* No gulp and no grunt, just npm scripts.
 
-    * Note: Your User ID is different than your User Name. Your User ID is a string that looks like `12345678`
-    * Note: If you do not have an Instagram account, find an account that you enjoy and use their photos for your feed.
+>Warning: Make sure you're using the latest version of Node.js and NPM
 
-  1. Create an `index.html` with an HTML5 template in a new directory, and fire up `http-server` we will need this in order to get our auth token.
-    * Start your server, and copy the URL.
-    * Go to your Manage Clients on the Instagram API settings, click `Manage` on your project, then click on the `Security Tab` and enter your server URL into the Valid Redirect URIs.
+### Quick start
 
-  1. This is the weird step - since we are making a client side web application, we need to get a [pre-approved access-token from Instagram](https://www.instagram.com/developer/authentication/). Here's how you do it:
+> Clone/Download the repo then edit `app.js` inside [`/src/app/app.js`](/src/app/app.js)
 
-    * **Step One:** Direct your user to our authorization URL (Be sure to replace `CLIENT_ID` with your client ID and `REDIRECT_URI` with the url you pasted in the step above)
+```bash
+# clone our repo
+$ git clone https://github.com/preboot/angular-webpack.git my-app
 
-          https://api.instagram.com/oauth/authorize/?client_id=CLIENT_ID&redirect_uri=REDIRECT_URI&response_type=token
+# change directory to your app
+$ cd my-app
 
-      At this point, we present the user with a login screen and then a confirmation screen where they grant your app’s access to their Instagram data. Note that unlike the explicit flow the response type here is “token”.
+# install the dependencies with npm
+$ npm install
 
-    * **Step Two:** Receive the access_token via the URL fragment
+# start the server
+$ npm start
+```
 
-      Once the user has authenticated and then authorized your application, Instagram redirects them to your redirect_uri with the access_token in the url fragment. It will look like this:
+go to [http://localhost:8080](http://localhost:8080) in your browser.
 
-          http://your-redirect-uri#access_token=ACCESS-TOKEN
+# Table of Contents
 
-      Simply grab the access_token off the URL fragment and you’re good to go. If the user chooses not to authorize your application, you’ll receive the same error response as in the explicit flow
+* [Getting Started](#getting-started)
+    * [Dependencies](#dependencies)
+    * [Installing](#installing)
+    * [Running the app](#running-the-app)
+    * [Developing](#developing)
+    * [Testing](#testing)
+* [License](#license)
 
-  1. Once you get your **user id** and your **access_token**, try hitting this route to get your most recent Instagram photos (Be sure to replace your `USER_ID` with your user ID and `ACCESS_TOKEN` with the access token you got in the step above).
+# Getting Started
 
-      https://api.instagram.com/v1/users/USER_ID/media/recent/?count=99&&callback=JSON_CALLBACK&access_token=ACCESS_TOKEN
+## Dependencies
 
-  1. Now, you're ready to starting building your Instagram Feed in Angular :sparkles:
+What you need to run this app:
+* `node` and `npm` (Use [NVM](https://github.com/creationix/nvm))
+* Ensure you're running Node (`v4.1.x`+) and NPM (`2.14.x`+)
 
-## Style Guide
+## Installing
 
-Below is a guide for how you should layout your Instagram feed. There is a sample CSS for the header and the buttons in `styles.css`.
+* `fork` this repo
+* `clone` your fork
+* `npm install` to install all dependencies
 
-#### Grid Layout
+## Running the app
 
-![instafeed2 - Grid](https://cloud.githubusercontent.com/assets/4650739/17606157/ae6a1080-5fb9-11e6-8a71-3f06c8ea6a3f.png)
+After you have installed all dependencies you can now run the app with:
+```bash
+npm start
+```
 
-#### List Layout
+It will start a local server using `webpack-dev-server` which will watch, build (in-memory), and reload for you. The port will be displayed to you as `http://localhost:8080`.
 
-![instafeed2 - List](https://cloud.githubusercontent.com/assets/4650739/17607299/a521ea1e-5fc0-11e6-8ce1-3b0e23e5d43f.png)
+## Developing
 
-### Stretch Goals
-- Add additional views
-- Deploy your application to Github pages.
-- Add a input so a user can select the user's photos.
+### Build files
 
-## Additional Resources
+* single run: `npm run build`
+* build files and watch: `npm start`
 
-#### Angualar Slides
-- Link: [Angular Slides](http://slides.com/theremix/interactive-intro-angularjs#/)
+## Testing
 
-#### Angular Documentation
-- Link: [Angular 1.5 Documentation](https://docs.angularjs.org/)
+#### 1. Unit Tests
 
-#### Instagram API Documentation
-- Link: [Instagram API Documentation](https://www.instagram.com/developer/endpoints/)
+* single run: `npm test`
+* live mode (TDD style): `npm run test-watch`
 
-#### Instagram Client Registration
-- Link: [Instagram Client Registration](https://www.instagram.com/developer/clients/manage/)
+# License
 
-#### Lookup Your Instagram User ID
-- Link: [Lookup Your Instagram User ID](http://jelled.com/instagram/lookup-user-id)
+[MIT](/LICENSE)
